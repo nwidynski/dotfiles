@@ -15,6 +15,7 @@ __global_setup() {
   export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
   export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-$HOME/.run}"
   export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+  export XDG_CODESPACE_HOME="${XDG_CODESPACE_HOME:-$HOME/.codespace}"
   
   mkdir -p "$TMPDIR" "$XDG_CACHE_HOME" "$XDG_CONFIG_HOME" "$XDG_DATA_HOME" "$XDG_RUNTIME_DIR" "$XDG_STATE_HOME"
 
@@ -31,8 +32,10 @@ __global_setup() {
 }
 
 __shell_setup() {
-  # Configure BASH shell
-  source "$XDG_CONFIG_HOME/shell/install.sh"
+  # Activate codespace profile
+  if [ -f "$XDG_CODESPACE_HOME/shell/install.sh" ]; then
+    source "$XDG_CODESPACE_HOME/shell/install.sh"
+  fi
 }
 
 __global_setup
