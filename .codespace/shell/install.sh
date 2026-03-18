@@ -12,7 +12,7 @@ __mise_setup() {
   export MISE_AUTO_ACTIVATE=0
   export MISE_BIN_DIR="$XDG_DATA_HOME/mise/bin"
   export MISE_CACHE_DIR="$XDG_CACHE_HOME/mise"
-  export MISE_CONFIG_DIR="$XDG_CONFIG_HOME/mise"
+  export MISE_CONFIG_DIR="$XDG_CODESPACE_HOME/mise"
   export MISE_DATA_DIR="$XDG_DATA_HOME/mise"
   export MISE_GLOBAL_CONFIG_FILE="$MISE_CONFIG_DIR/mise.toml"
   export MISE_INSTALLS_DIR="$XDG_DATA_HOME/mise/installs"
@@ -25,7 +25,7 @@ __mise_setup() {
 
   # Install mise-en-place
   if [ ! -f "$MISE_INSTALL_PATH" ]; then
-    local version=${MISE_VERSION:-"latest"}
+    local version=${MISE_VERSION}
 
     if [ -f "$MISE_GLOBAL_CONFIG_FILE" ]; then
       version=$(sed -n 's/^min_version *= *"\([^"]*\)".*/\1/p' "$MISE_GLOBAL_CONFIG_FILE")
@@ -87,6 +87,9 @@ __mise_setup() {
     local bin=$(echo "$alias" | awk '{print $1}')
     local command=$(echo "$alias" | awk '{$1=""; sub(/^ /, ""); print}')
 
+    [ -z "$bin" ] && continue
+    [ -z "$command" ] && continue
+
     echo "$command \"\$@\"" > "$MISE_BIN_DIR/$bin"
     chmod +x "$MISE_BIN_DIR/$bin"
   done
@@ -95,10 +98,5 @@ __mise_setup() {
   export PATH="$MISE_BIN_DIR:$PATH"
 }
 
-__codespace_setup() {
-  # Configure Codespaces
-}
-
 __global_setup
 __mise_setup
-__codespace_setup

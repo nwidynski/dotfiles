@@ -9,13 +9,13 @@
 
 __global_setup() {
   # Configure global directories
-  export TMPDIR="${TMPDIR:-$HOME/.tmp}"
-  export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
-  export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-  export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
-  export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-$HOME/.run}"
-  export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
-  export XDG_CODESPACE_HOME="${XDG_CODESPACE_HOME:-$HOME/.codespace}"
+  export TMPDIR="$HOME/.tmp"
+  export XDG_CACHE_HOME="$HOME/.cache"
+  export XDG_CONFIG_HOME="$HOME/.config"
+  export XDG_DATA_HOME="$HOME/.local/share"
+  export XDG_RUNTIME_DIR="$HOME/.run"
+  export XDG_STATE_HOME="$HOME/.local/state"
+  export XDG_CODESPACE_HOME="$HOME/.codespace"
   
   mkdir -p "$TMPDIR" "$XDG_CACHE_HOME" "$XDG_CONFIG_HOME" "$XDG_DATA_HOME" "$XDG_RUNTIME_DIR" "$XDG_STATE_HOME"
 
