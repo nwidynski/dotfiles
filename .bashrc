@@ -17,7 +17,7 @@ __global_setup() {
   export XDG_STATE_HOME="$HOME/.local/state"
   export XDG_CODESPACE_HOME="$HOME/.codespace"
   
-  mkdir -p "$TMPDIR" "$XDG_CACHE_HOME" "$XDG_CONFIG_HOME" "$XDG_DATA_HOME" "$XDG_RUNTIME_DIR" "$XDG_STATE_HOME"
+  mkdir -p "$TMPDIR" "$XDG_CACHE_HOME" "$XDG_CONFIG_HOME" "$XDG_DATA_HOME" "$XDG_RUNTIME_DIR" "$XDG_STATE_HOME" "$XDG_CODESPACE_HOME"
 
   # Check for required dependencies
   if ! command -v curl &> /dev/null; then
