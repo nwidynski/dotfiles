@@ -17,6 +17,12 @@
 # ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
+###
+# Configures the XDG base directories and checks for required dependencies.
+#
+# @since 1.0.0
+# @category Utils
+##
 __global_setup() {
   # Configure global directories
   export TMPDIR="$HOME/.tmp"
@@ -41,6 +47,12 @@ __global_setup() {
   fi
 }
 
+###
+# Installs and activates Oh My Zsh with Powerlevel10k.
+#
+# @since 1.0.0
+# @category Utils
+##
 __shell_setup() {
   # Configure ZSH shell
   # https://github.com/orgs/community/discussions/148958

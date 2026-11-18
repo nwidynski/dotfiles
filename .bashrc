@@ -17,6 +17,12 @@
 # ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
+###
+# Configures the XDG base directories and checks for required dependencies.
+#
+# @since 1.0.0
+# @category Utils
+##
 __global_setup() {
   # Configure global directories
   export TMPDIR="$HOME/.tmp"
@@ -41,6 +47,12 @@ __global_setup() {
   fi
 }
 
+###
+# Sources the codespace profile.
+#
+# @since 1.0.0
+# @category Utils
+##
 __shell_setup() {
   # Activate codespace profile
   if [ -f "$XDG_CODESPACE_HOME/shell/install.sh" ]; then

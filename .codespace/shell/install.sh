@@ -21,7 +21,7 @@
 # Starts the timer of a synchronous execution block.
 #
 # @since 1.0.0
-# @category Utilities
+# @category Utils
 ##
 __debug_start() {
   [ "$MISE_INSTALL_DEBUG" = "1" ] || return
@@ -34,7 +34,7 @@ __debug_start() {
 # Flushes the timer of a synchronous execution block to stderr.
 #
 # @since 1.0.0
-# @category Utilities
+# @category Utils
 ##
 __debug_end() {
   [ "$MISE_INSTALL_DEBUG" = "1" ] || return
@@ -45,6 +45,12 @@ __debug_end() {
   printf '\033[2m%s %s: %sms\033[0m\n' "install.sh" "$__debug_label" "$__debug_time" >&2
 }
 
+###
+# Bootstraps a shell environment using mise-en-place.
+#
+# @since 1.0.0
+# @category Utils
+##
 __mise_setup() {
   # Configure feature flags
   export MISE_AUTO_ACTIVATE="${MISE_AUTO_ACTIVATE:-0}"
