@@ -29,19 +29,15 @@ __mise_setup() {
   export MISE_INSTALL_PATH="$XDG_DATA_HOME/mise/mise"
   export MISE_LOG_FILE="$TMPDIR/mise/mise.log"
   export MISE_PLUGINS_DIR="$XDG_DATA_HOME/mise/plugins"
+  export MISE_SELF_UPDATE_INSTRUCTIONS="$XDG_STATE_HOME/mise/self-update-instructions.toml"
   export MISE_STATE_DIR="$XDG_STATE_HOME/mise"
   export MISE_TMP_DIR="$TMPDIR/mise"
   export MISE_TRUSTED_CONFIG_PATHS="$MISE_CONFIG_DIR"
+  export MISE_VERSION="2026.11.9"
 
   # Install mise-en-place
-  if [ ! -f "$MISE_INSTALL_PATH" ]; then
-    local version=${MISE_VERSION}
-
-    if [ -f "$MISE_GLOBAL_CONFIG_FILE" ]; then
-      version=$(sed -n 's/^min_version *= *"\([^"]*\)".*/\1/p' "$MISE_GLOBAL_CONFIG_FILE")
-    fi
-
-    curl -fsSL https://mise.run | MISE_VERSION="$version" MISE_INSTALL_HELP=0 sh
+  if [ "$("$MISE_INSTALL_PATH" --version 2> /dev/null | cut -d ' ' -f 1)" != "$MISE_VERSION" ]; then
+    curl -fsSL https://mise.run | MISE_INSTALL_HELP=0 sh
   fi
 
   # Clean orphaned aliases, since we re-create them
@@ -50,7 +46,14 @@ __mise_setup() {
   fi
 
   # Configure mise-en-place directories
-  mkdir -p "$MISE_BIN_DIR" "$MISE_PLUGINS_DIR"
+  mkdir -p "$MISE_BIN_DIR" "$MISE_PLUGINS_DIR" "$MISE_STATE_DIR"
+
+  # Lock mise-en-place self-update
+  if [ ! -f "$MISE_SELF_UPDATE_INSTRUCTIONS" ]; then
+    local file="$XDG_CODESPACE_HOME/shell/install.sh"
+
+    echo "message = \"Bump MISE_VERSION in $file\"" > "$MISE_SELF_UPDATE_INSTRUCTIONS"
+  fi
 
   # Symlink mise-en-place itself
   if [ ! -f "$MISE_BIN_DIR/mise" ]; then
