@@ -22,12 +22,10 @@ jobs                                                        = 16
 auto_install                                                = false
 disable_hints                                               = ["*"]
 experimental                                                = true
-github_attestations                                         = false
 idiomatic_version_file_enable_tools                         = ["bun", "node", "pnpm", "yarn"]
 lockfile                                                    = false
 log_level                                                   = "info"
 prefer_offline                                              = true
-slsa                                                        = false
 
 [settings.npm]
 package_manager                                             = "bun"
