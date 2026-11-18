@@ -111,5 +111,9 @@ __mise_setup() {
   export PATH="$MISE_BIN_DIR:$PATH"
 }
 
-__global_setup
-__mise_setup
+if ! command -v mise &> /dev/null; then
+  __global_setup
+  __mise_setup
+else
+  __global_setup
+fi
