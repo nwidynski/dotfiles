@@ -45,9 +45,9 @@
   # Customize prompt color based on mise activation status 
   prompt_mise() {
     if [[ -n "${MISE_SHELL}" ]]; then
-      p10k segment -f green -t "❯"
+      p10k segment -f '#81B88B' -t "❯"
     else
-      p10k segment -f red -t "❯"
+      p10k segment -f '#E06C75' -t "❯"
     fi
   }
 
@@ -141,7 +141,7 @@
   typeset -g POWERLEVEL9K_VIRTUALENV_{LEFT,RIGHT}_DELIMITER=
 
   # Blue current directory.
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=$blue
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND='#9CDCFE'
 
   # Context format when root: user@host. The first part white, the rest grey.
   typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE="%F{$white}%n%f%F{$grey}@%m%f"

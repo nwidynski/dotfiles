@@ -18,26 +18,29 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 
 [settings]
-jobs                                    = 16
-auto_install                            = false
-disable_hints                           = ["*"]
-experimental                            = true
-github_attestations                     = false
-idiomatic_version_file_enable_tools     = ["bun", "node", "pnpm", "yarn"]
-lockfile                                = false
-log_level                               = "info"
-npm.bun                                 = true
-slsa                                    = false
+jobs                                                        = 16
+auto_install                                                = false
+disable_hints                                               = ["*"]
+experimental                                                = true
+github_attestations                                         = false
+idiomatic_version_file_enable_tools                         = ["bun", "node", "pnpm", "yarn"]
+lockfile                                                    = false
+log_level                                                   = "info"
+prefer_offline                                              = true
+slsa                                                        = false
+
+[settings.npm]
+package_manager                                             = "bun"
 
 [tools]
-bun                                     = "1"
-hyperfine                               = "1"
-node                                    = "24"
-pnpm                                    = "10"
-yarn                                    = "4"
+"aqua:sharkdp/hyperfine"                                    = { version = "1" }
+"aqua:pnpm/pnpm"                                            = { version = "10" }
+"aqua:yarnpkg/berry"                                        = { version = "4" }
+"core:bun"                                                  = { version = "1" }
+"core:node"                                                 = { version = "24" }
 
 [shell_alias]
-mx                                      = "mise x --"
-mbx                                     = "mise x -- bunx"
-mpx                                     = "mise x -- npx"
-gwt                                     = "git worktree"
+mx                                                          = "mise x --"
+mbx                                                         = "mise x -- bunx"
+mpx                                                         = "mise x -- npx"
+gwt                                                         = "git worktree"
