@@ -31,8 +31,9 @@ prefer_offline                                              = true
 package_manager                                             = "bun"
 
 [tools]
-"aqua:sharkdp/hyperfine"                                    = { version = "1" }
+"aqua:cli/cli"                                              = { version = "2.105.0" }
 "aqua:pnpm/pnpm"                                            = { version = "10" }
+"aqua:sharkdp/hyperfine"                                    = { version = "1" }
 "aqua:yarnpkg/berry"                                        = { version = "4" }
 "core:bun"                                                  = { version = "1" }
 "core:node"                                                 = { version = "24" }
