@@ -41,11 +41,16 @@ __worktree_root() {
 ###
 # Creates the worktree that Claude Code asks for and prints its path.
 # Existing folders are reused, and new ones get a mark for the remove hook.
+# Projects that register a create hook of their own are left to it.
 #
 # @since 1.0.0
 # @category Utils
 ##
 __worktree_create() {
+  if jq -e '.hooks.WorktreeCreate' "$CLAUDE_PROJECT_DIR/.claude/settings.json" &> /dev/null; then
+    return
+  fi
+
   local name="$( jq -r '.name' )"
   local root="$( __worktree_root )"
   local dir="$root/$name"
