@@ -65,4 +65,6 @@ __worktree_create() {
   echo "$dir"
 }
 
-__worktree_create
+if ! jq -e '.hooks.WorktreeCreate' "$CLAUDE_PROJECT_DIR/.claude/settings.json" &> /dev/null; then
+  __worktree_create
+fi

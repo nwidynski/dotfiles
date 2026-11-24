@@ -36,4 +36,6 @@ __worktree_remove() {
   fi
 }
 
-__worktree_remove
+if ! jq -e '.hooks.WorktreeRemove' "$CLAUDE_PROJECT_DIR/.claude/settings.json" &> /dev/null; then
+  __worktree_remove
+fi
