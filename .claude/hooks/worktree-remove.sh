@@ -24,16 +24,11 @@ set -e
 ###
 # Removes the worktree that Claude Code hands over, when the create hook made it.
 # git keeps dirty worktrees, and the branch always stays.
-# Projects that register a remove hook of their own are left to it.
 #
 # @since 1.0.0
 # @category Utils
 ##
 __worktree_remove() {
-  if jq -e '.hooks.WorktreeRemove' "$CLAUDE_PROJECT_DIR/.claude/settings.json" &> /dev/null; then
-    return
-  fi
-
   local dir="$( jq -r '.worktree_path' )"
 
   if [ -f "$( git -C "$dir" rev-parse --path-format=absolute --git-path claude-hook-created )" ]; then
@@ -41,4 +36,6 @@ __worktree_remove() {
   fi
 }
 
-__worktree_remove
+if ! jq -e '.hooks.WorktreeRemove' "$CLAUDE_PROJECT_DIR/.claude/settings.json" &> /dev/null; then
+  __worktree_remove
+fi
