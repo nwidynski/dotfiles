@@ -5,6 +5,9 @@
     "sessionUrl": false
   },
   "hooks": {
+    "SessionStart": [
+      { "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/session-start.sh" }] }
+    ],
     "WorktreeCreate": [
       { "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/worktree-create.sh" }] }
     ],
